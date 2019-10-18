@@ -1,0 +1,24 @@
+<!--
+This component creates an Aura component that displays accounts in a data table.
+The <aura:handler> tag subscribes this component to events of type c:AccountsLoaded.
+For each event received the onAccountsLoaded client-side controller action is called.
+The <lightning:navigation> tag is a service component, which means it has no visual markup itself.
+It is used to seamlessly navigate to other pages in Lightning Experience.
+The <lightning:datatable> tag displays the accounts in a table styled by the Salesforce Lightning Design System.
+It provides rich behaviors such as resizing columns, formatting cell values, row-level actions, and much more.
+-->
+<aura:component>
+    <aura:handler event="c:AccountsLoaded" action="{!c.onAccountsLoaded}"/><!-- action is handled in the controller-->
+    <lightning:navigation aura:id="navigation"/>
+    <aura:attribute name="rows" type="Map[]"/>
+    <aura:attribute name="cols" type="Map[]"/>
+    <lightning:card title="Account List" iconName="standard:account">
+        <lightning:datatable
+            data="{!v.rows}"
+            columns="{!v.cols}"
+            keyField="Id"
+            hideCheckboxColumn="true"
+            showRowNumberColumn="true"
+            onrowaction="{!c.onRowAction}"/><!--onrowaction is handled in the controller-->
+    </lightning:card>
+    </aura:component>
