@@ -1,0 +1,40 @@
+<!--
+The main component, which we use to display our app to end users in Lightning Pages, Salesforce mobile, and Custom Tabs
+The force:appHostable interface means this component can be displayed in a custom tab.
+The flexipage:availableForAllPageTypes interface means this component can be added to Lightning pages
+using Lightning App Builder
+The <lightning:layout> and <lightning:layoutItem> tags define a responsive layout based on a 12-column grid system.
+The <div class="slds-box slds-theme_default"> tags style the placeholder text to make it easier to see until you replace
+it with the actual Account Search, Account List, and Account Map components later
+-->
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes"> 
+    <lightning:layout horizontalAlign="space" multipleRows="true">
+        <lightning:layoutItem size="12"
+                              mediumDeviceSize="12"
+                              padding="around-small">
+            <!--Commented out after format was confirmed and Aura Account Search Controller coded
+            <div class="slds-box slds-theme_default">
+                Account Search component goes here
+            </div> -->
+            <c:AccountSearch/> <!--<c:AccountSearch/> replaced the placeholder <div> for “AccountSearch goes here”. -->
+        </lightning:layoutItem>
+        <lightning:layoutItem size="12"
+                              mediumDeviceSize="6"
+                              padding="around-small">
+            <!--Commented out after format was confirmed and Aura Account List Component coded.
+            <div class="slds-box slds-theme_default">
+                Account List component goes here
+            </div> -->
+            <c:AccountList/><!--<c:AccountList/> replaced the placeholder <div> for “Account List component goes here”. -->
+        </lightning:layoutItem>
+        <lightning:layoutItem size="12"
+                              mediumDeviceSize="6"
+                              padding="around-small">
+            <!--Commented out after format was confirmed and Aura account map component coded.
+            <div class="slds-box slds-theme_default">
+                Account Map goes here
+            </div>-->
+            <c:AccountMap/><!--<c:AccountMap/> replaced the placeholder <div> for “AccountMap goes here”.-->
+        </lightning:layoutItem>
+    </lightning:layout>
+</aura:component>
