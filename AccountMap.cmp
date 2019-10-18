@@ -1,0 +1,13 @@
+<!--
+Create an Aura component that visualizes account addresses as markers on a map.
+The <aura:handler> tag subscribes this component to events of type c:AccountsLoaded.
+For each event received the onAccountsLoaded client-side controller action is called.
+The <lightning:map> tag visualizes addresses as markers on a map.
+-->
+<aura:component>
+    <aura:handler event="c:AccountsLoaded" action="{!c.onAccountsLoaded}"/><!-- action handled by the controller-->
+    <aura:attribute name="mapMarkers" type="Map[]"/>
+    <lightning:card title="Account Map" iconName="action:map">
+        <lightning:map mapMarkers="{!v.mapMarkers}"/>
+    </lightning:card>
+</aura:component>
