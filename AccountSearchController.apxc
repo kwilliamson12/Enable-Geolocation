@@ -1,0 +1,29 @@
+/*
+ *An Apex controller that allows your Aura components to retrieve a list of accounts with their address information
+The with sharing keyword enforces the sharing rules that apply to the current user when this Apex class works with records.
+The @AuraEnabled annotation exposes this method to the Lightning components.
+The List<List<SObject>> searchResults holds the SOSL query results.
+The FIND :searchTerm specifies what text to search for in account fields.
+The RETURNING Account clause specifies which account fields to return and how to order the results.
+*/
+public with sharing class AccountSearchController {
+    @AuraEnabled
+    public static List<Account> searchAccounts( String searchTerm ) {//method takes in a list of accounts
+        List<Account> accounts = new List<Account>();//creates a new instance of a list of accounts
+        if ( String.isNotBlank( searchTerm ) ) {//checks to see if the search term is blank
+            List<List<SObject>> searchResults = [//adds the Id, Name, Phone, Website, BillingStreet, BillingCity, BillingState, 
+                								//BillingPostalCode to account instance in list
+                FIND :searchTerm
+                RETURNING Account(
+                    Id, Name, Phone, Website,
+                    BillingStreet, BillingCity,
+                    BillingState, BillingPostalCode
+                    ORDER BY Name
+                    LIMIT 10
+                )
+            ];
+            accounts = searchResults[0];
+        }
+        return accounts;
+    }
+}
