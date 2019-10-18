@@ -1,0 +1,10 @@
+<!--
+An application event our component uses to notify other components of search results
+The type="APPLICATION" attribute of the <aura:event> tag makes it so that any component on the page can handle this event,
+not just parent components in the container hierarchy.
+The <aura:attribute> specifies this event carries an array of accounts—the search results—as its data.
+-->
+
+<aura:event type="APPLICATION">
+    <aura:attribute name="accounts" type="Account[]"/>
+</aura:event>
